@@ -1,22 +1,23 @@
 package renderEngine;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.FileReader;
+import java.io.InputStream;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.RawModel;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
-
-import model.RawModel;
 
 public class Loader {
 	
@@ -33,20 +34,18 @@ public class Loader {
 		return new RawModel(vaoID,indices.length);
 	}
 	
-	public int loadTexture(String fileName){                        
-		Texture texture=null;
+	public int loadTexture(String fileName) {
+		Texture texture = null;
 		try {
-			texture=TextureLoader.getTexture("PNG",new FileInputStream("res/"+fileName+".png"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			texture = TextureLoader.getTexture("PNG",
+					new FileInputStream("res/" + fileName + ".png"));
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Tried to load texture " + fileName + ".png , didn't work");
+			System.exit(-1);
 		}
-		int textureID=texture.getTextureID();
-		textures.add(textureID);
-		return textureID;
+		textures.add(texture.getTextureID());
+		return texture.getTextureID();
 	}
 	
 	public void cleanUp(){
@@ -68,7 +67,7 @@ public class Loader {
 		return vaoID;
 	}
 	
-	private void storeDataInAttributeList(int attributeNumber, int coordinateSize, float[] data){
+	private void storeDataInAttributeList(int attributeNumber, int coordinateSize,float[] data){
 		int vboID = GL15.glGenBuffers();
 		vbos.add(vboID);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
@@ -103,5 +102,7 @@ public class Loader {
 		buffer.flip();
 		return buffer;
 	}
+	
+	
 
 }
