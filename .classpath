@@ -5,6 +5,7 @@
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/root/Downloads/lwjgl-2.9.1/lwjgl-2.9.1/native/windows"/>
 		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/root/Downloads/lwjgl-2.9.1/lwjgl-2.9.1/jar/AppleJavaExtensions.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Downloads/lwjgl-2.9.1/lwjgl-2.9.1/jar/asm-debug-all.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Downloads/lwjgl-2.9.1/lwjgl-2.9.1/jar/jinput.jar"/>
